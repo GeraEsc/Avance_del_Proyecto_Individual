@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  servicio_a:
+    build: ./servicio_a
+    container_name: servicio_a
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=db-actividades.crocdsukejuv.us-east-1.rds.amazonaws.com
+      - DB_USER=admin
+      - DB_PASSWORD=Password1234
+      - DB_NAME=actividades
+      - URL_SERVICIO_B=http://servicio_b:5001/procesar
+    networks:
+      - red-microservicios
+    depends_on:
+      - servicio_b
+
+  servicio_b:
+    build: ./servicio_b
+    container_name: servicio_b
+    # El puerto 5001 NO se expone al exterior, cumpliendo el requisito
+    environment:
+      - DB_HOST=db-actividades.crocdsukejuv.us-east-1.rds.amazonaws.com
+      - DB_USER=admin
+      - DB_PASSWORD=Password1234
+      - DB_NAME=actividades
+    networks:
+      - red-microservicios
+
+networks:
+  red-microservicios:
+    driver: bridge
