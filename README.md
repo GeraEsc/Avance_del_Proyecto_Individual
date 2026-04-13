@@ -42,19 +42,19 @@ Durante la prueba de resiliencia, al detener el Servicio B, el Servicio A detect
 ## Cómo levantar el proyecto
 ```bash
 # 1. Clonar el repositorio
-git clone [https://github.com/GeraEsc/Avance_del_Proyecto_Individual.git](https://github.com/GeraEsc/Avance_del_Proyecto_Individual.git)
+git clone https://github.com/GeraEsc/Avance_del_Proyecto_Individual.git
 
-# 2. Entrar a la carpeta
-cd gerardo-escamilla-microservicios/microservicios
+# 2. Entrar a la carpeta del proyecto
+cd Avance_del_Proyecto_Individual/microservicios
 
 # 3. Configurar las variables de entorno en docker-compose.yml
-# (Cambiar MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB por los de tu RDS)
+# (Cambiar MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB por los datos de tu RDS)
 
-# 4. Levantar
+# 4. Levantar los servicios
 sudo docker-compose up --build -d
 
 # 5. Abrir en el navegador
-# http://<TU_IP_PUBLICA_EC2>:5000```
+# http://<IP_PUBLICA_DE_TU_EC2>:5000```
 
 
 ## Reflexión Final
