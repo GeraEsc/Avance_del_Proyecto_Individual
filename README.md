@@ -47,14 +47,32 @@ git clone https://github.com/GeraEsc/Avance_del_Proyecto_Individual.git
 # 2. Entrar a la carpeta del proyecto
 cd Avance_del_Proyecto_Individual/microservicios
 
-# 3. Configurar las variables de entorno en docker-compose.yml
-# (Cambiar MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB por los datos de tu RDS)
+# 3. Instalación de Dependencias (Si no están instaladas)
+sudo yum update -y
+sudo yum install -y docker docker-compose-plugin
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -a -G docker ec2-user
+# Aplicar cambios de grupo sin cerrar sesión
+newgrp docker
 
-# 4. Levantar los servicios
-sudo docker-compose up --build -d
+# 4. Configurar variables de entorno
+# Edita el archivo y pon tus credenciales de RDS
+nano docker-compose.yml 
 
-# 5. Abrir en el navegador
-# http://<IP_PUBLICA_DE_TU_EC2>:5000
+# 5. Levantar los servicios
+# Probamos con 'docker compose' (versión moderna)
+sudo docker compose up --build -d
+
+# 6. Comandos de Verificación (¡Agrega estos!)
+# Ver si los contenedores están arriba
+sudo docker compose ps
+
+# Ver logs en tiempo real (Útil si la página no carga)
+sudo docker compose logs -f
+
+# 7. Detener el proyecto
+sudo docker compose down
 ```
 ---
 ## Reflexión Final
