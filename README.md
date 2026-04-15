@@ -41,38 +41,45 @@ Durante la prueba de resiliencia, al detener el Servicio B, el Servicio A detect
 
 ## Como levantar el proyecto
 ```bash
-# 1. Clonar el repositorio
+### 1. Clonar el repositorio
 git clone https://github.com/GeraEsc/Avance_del_Proyecto_Individual.git
 
-# 2. Entrar a la carpeta del proyecto
+### 2. Entrar a la carpeta del proyecto
 cd Avance_del_Proyecto_Individual/microservicios
 
-# 3. Instalación de Dependencias (Si no están instaladas)
+### 3. Instalación de Dependencias (Si no están instaladas)
+# Actualizar sistema e instalar Docker
 sudo yum update -y
 sudo yum install -y docker docker-compose-plugin
 sudo systemctl start docker
 sudo systemctl enable docker
+# Agregar usuario al grupo docker y aplicar cambios
 sudo usermod -a -G docker ec2-user
-# Aplicar cambios de grupo sin cerrar sesión
 newgrp docker
 
-# 4. Configurar variables de entorno
-# Edita el archivo y pon tus credenciales de RDS
-nano docker-compose.yml 
+### 4. Configurar variables de entorno
+# Edita el archivo para validar las credenciales de tu base de datos RDS
+nano docker-compose.yml
 
-# 5. Levantar los servicios
-# Probamos con 'docker compose' (versión moderna)
-sudo docker compose up --build -d
+### 5. Levantar los servicios
+# Este comando construye las imágenes y levanta los contenedores en segundo plano
+sudo docker-compose up --build -d
 
-# 6. Comandos de Verificación (¡Agrega estos!)
-# Ver si los contenedores están arriba
-sudo docker compose ps
+### 6. Comandos de Verificación
+# Comprobar que los contenedores (servicio_a y servicio_b) estén en ejecución
+sudo docker-compose ps
 
-# Ver logs en tiempo real (Útil si la página no carga)
-sudo docker compose logs -f
+# Ver logs en tiempo real para monitorear la conexión a la base de datos
+# (Presiona Ctrl+C para salir de los logs)
+sudo docker-compose logs -f
 
-# 7. Detener el proyecto
-sudo docker compose down
+### 7. Acceso a la Aplicación
+# Una vez desplegado, abre tu navegador en la siguiente dirección:
+# http://<IP_PUBLICA_DE_TU_EC2>:5000
+
+### 8. Detener el proyecto
+# Para detener y eliminar los contenedores y redes creadas
+sudo docker-compose down
 ```
 ---
 ## Reflexión Final
