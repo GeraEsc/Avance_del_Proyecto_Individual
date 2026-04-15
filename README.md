@@ -55,5 +55,8 @@ sudo docker-compose up --build -d
 
 # 5. Abrir en el navegador
 # http://<IP_PUBLICA_DE_TU_EC2>:5000
-
+```
+---
+#Reflexión Final
+Lo más difícil de este proyecto fue lograr que la comunicación entre contenedores fuera fluida, especialmente al configurar el DNS interno de Docker para que el Servicio A reconociera al Servicio B sin usar IPs estáticas. Entendí que la arquitectura de microservicios no solo se trata de "separar el código", sino de gestionar la red y la tolerancia a fallos (resiliencia) de forma independiente. Antes pensaba que un error en un componente debía tirar todo el sistema, pero ahora comprendo que con un buen manejo de excepciones y una arquitectura desacoplada, la experiencia del usuario puede mantenerse a salvo. En una situación real, usaría microservicios para aplicaciones de alta demanda como un e-commerce o una plataforma de servicios financieros (como OXXO GAS), donde el procesamiento de facturas o pagos no debe impedir que otros usuarios sigan navegando en la interfaz principal.
 
